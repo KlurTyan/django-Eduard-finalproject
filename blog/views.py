@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Post, AboutUS
 
 def index(request):
-    return render(request, 'index.html')
+    news = Post.objects.all()
+    return render(request, 'index.html', {'posts' : news})
 
 def about(request):
-    return render(request, 'about.html')
+    aboutPost = AboutUS.objects.last()
+    return render(request, 'about.html', {'about' : aboutPost})

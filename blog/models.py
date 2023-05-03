@@ -14,3 +14,15 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+class AboutUS(models.Model):
+    link_Whatsapp = models.URLField(max_length=200, verbose_name=('Ссылка на Whatsapp'))
+    link_Telegram = models.URLField(max_length=200, verbose_name=('Ссылка на Telegram'))
+    aboutText = models.TextField(verbose_name=('Текст о нас'))
+
+    class Meta:
+        verbose_name='About'
+        verbose_name_plural='About'
+
+    def __str__(self) -> str:
+        return self.aboutText
