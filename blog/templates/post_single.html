@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+    <div class="alert alert-warning">
+        <h1>{{post.title}}</h1>
+        <p>{{post.text}}</p>
+        <p>{{post.date_post}}</p>
+    </div>
+{% endblock content %}

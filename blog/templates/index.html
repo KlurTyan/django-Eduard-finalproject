@@ -6,9 +6,8 @@ Blog
 
 {% block content %}
     {% for el in posts %}
-        <div class="alert alert-info" style="width: 400px;">
-            <h1>{{el.title}}</h1>
-            <p>{{el.text}}</p>
+        <div class="alert alert-info">
+            <h1><a href="{% url 'single' pk=el.id %}">{{el.title}}</a></h1>
             <p>{{el.date_post}}</p>
         </div>
     {% endfor %}

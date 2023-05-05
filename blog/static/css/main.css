@@ -1,0 +1,80 @@
+a{
+    color: #000000;
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+.alert-info{
+    width: 400px;
+    margin-left: 700px;
+    top: 25px;
+}
+
+.alert-info p{
+    color: #272727;
+}
+
+.alert-info a{
+    color: #272727;
+    text-decoration: none;
+}
+
+.alert-info a:visited{
+    text-decoration: none;
+}
+
+.alert-info a:active{
+    text-decoration: none;
+}
+
+.alert-warning{
+    width: 480px;
+    margin-left: 640px;
+    margin-top: 50px;
+}
+
+.alert-warning h1{
+    color: black;
+}
+
+.alert-warning p{
+    color: black;
+}
+
+.alert-success{
+    top: 250px;
+    margin-left: 750px;
+    width: 300px;
+    height: 150px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.Whatsapp{
+    font-size: 26px;
+}
+
+.Telegram{
+    font-size: 26px;
+}
+
+.Whatsapp:hover{
+    color: rgb(90, 148, 100);
+}
+
+.Telegram:hover{
+    color: rgb(97, 183, 209);
+}
+
