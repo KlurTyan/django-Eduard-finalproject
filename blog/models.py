@@ -52,6 +52,6 @@ class AboutUS(models.Model):
     class Meta:
         verbose_name='About'
         verbose_name_plural='About'
-
+    
     def __str__(self) -> str:
         return self.aboutText

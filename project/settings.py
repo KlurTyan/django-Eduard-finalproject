@@ -99,8 +99,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
 }
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'IT-Consulting Project API',
-    'DESCRIPTION': '',
+    'TITLE': 'Eduard`o API',
+    'DESCRIPTION': '<a href = "https://github.com/KlurTyan" style="font-size: 22px;">My git hub</a>',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
