@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 
-from .permissions import IsCourier
+from .permissions import IsCourier, IsSeller, IsAssembler, IsBasic, IsSuperAdmin
 from .serializers import TokenObtainPairSerializer, TokenRefreshSerializer, UserSerializer, PostSerializer, GetUserSerializer
 from .models import Post, AboutUS, User
 from .forms import PostForm
@@ -17,8 +17,32 @@ class CourierView(ListAPIView):
     permission_classes=[IsAuthenticated,IsCourier] 
 
     def get(self, request, *args, **kwargs):
-        return Response(data={'success':'Поздравляю вы действительно курьер'}, status=status.HTTP_200_OK)
+        return Response(data={'success':'Вы курьер или в народе кура)'}, status=status.HTTP_200_OK)
+    
+class SelleView(ListAPIView):
+    permission_classes =[IsAuthenticated, IsSeller] 
 
+    def get(self, request, *args, **kwargs):
+        return Response(data={'success':'Вы являетесь продавцом, вы Барыга?'}, status=status.HTTP_200_OK)
+
+class SuperAdminView(ListAPIView):
+    permission_classes=[IsAuthenticated,IsSuperAdmin] 
+
+    def get(self, request, *args, **kwargs):
+        return Response(data={'success':'Ты супер мега администратор)'}, status=status.HTTP_200_OK)
+
+class AssemblerView(ListAPIView):
+    permission_classes=[IsAuthenticated,IsAssembler] 
+
+    def get(self, request, *args, **kwargs):
+        return Response(data={'success':'Вы сборщик?'}, status=status.HTTP_200_OK)
+
+class BasicView(ListAPIView):
+    permission_classes=[IsAuthenticated,IsBasic] 
+
+    def get(self, request, *args, **kwargs):
+        return Response(data={'success':'Вы покупатель!'}, status=status.HTTP_200_OK)
+    
 
 class TokenObtainPairView(TokenObtainSlidingView):
     permission_classes = [AllowAny]
