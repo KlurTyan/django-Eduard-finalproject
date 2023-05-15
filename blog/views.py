@@ -2,19 +2,29 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework import mixins
+from rest_framework import mixins, status, permissions
 from rest_framework_simplejwt.views import TokenObtainSlidingView, TokenRefreshSlidingView
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.generics import ListAPIView
 
+from .permissions import IsCourier
 from .serializers import TokenObtainPairSerializer, TokenRefreshSerializer, UserSerializer, PostSerializer, GetUserSerializer
 from .models import Post, AboutUS, User
 from .forms import PostForm
 
+class CourierView(ListAPIView):
+    permission_classes=[IsAuthenticated,IsCourier] 
+
+    def get(self, request, *args, **kwargs):
+        return Response(data={'success':'Поздравляю вы действительно курьер'}, status=status.HTTP_200_OK)
+
+
 class TokenObtainPairView(TokenObtainSlidingView):
     permission_classes = [AllowAny]
     serializer_class = TokenObtainPairSerializer
+    def get_permissions(self):
+        return super().get_permissions()
 
 class TokenRefreshView(TokenRefreshSlidingView):
     permission_classes = [AllowAny]
@@ -36,6 +46,13 @@ class UserView(ModelViewSet):
 class PostViewSet(GenericViewSet, mixins.ListModelMixin):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+
+    def get_permissions(self):
+        if self.action in ['list','retrieve']:
+            self.permission_classes=[AllowAny]
+        else:
+            self.permission_classes=[IsAdminUser]
+        return super(self.__class__, self).get_permissions()
 
 def index(request):
     news = Post.objects.all()
