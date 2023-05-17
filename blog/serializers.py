@@ -6,7 +6,7 @@ from rest_framework_simplejwt.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Post, User
+from .models import Post, User, ProductCard
 
 class TokenObtainPairSerializer(TokenObtainPairSerializer):
 
@@ -62,3 +62,11 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'
+
+class ProductCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductCard
+        fields = '__all__'
+        extra_kwargs = {
+            'title':{'required' : False}
+        }

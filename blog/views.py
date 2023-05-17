@@ -9,9 +9,15 @@ from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 
 from .permissions import IsCourier, IsSeller, IsAssembler, IsBasic, IsSuperAdmin
-from .serializers import TokenObtainPairSerializer, TokenRefreshSerializer, UserSerializer, PostSerializer, GetUserSerializer
-from .models import Post, AboutUS, User
+from .serializers import TokenObtainPairSerializer, TokenRefreshSerializer, UserSerializer, PostSerializer, GetUserSerializer, ProductCardSerializer
+from .models import Post, AboutUS, User, ProductCard
 from .forms import PostForm
+
+class ProductCardView(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
+    permission_classes = [AllowAny]
+    serializer_class = ProductCardSerializer
+    queryset = ProductCard.objects.all()
+    
 
 class CourierView(ListAPIView):
     permission_classes=[IsAuthenticated,IsCourier] 

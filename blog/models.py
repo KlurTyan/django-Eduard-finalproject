@@ -66,3 +66,23 @@ class AboutUS(models.Model):
     
     def __str__(self) -> str:
         return self.aboutText
+    
+class ProductCard (models.Model):
+    image = models.ImageField(verbose_name='Изображение')
+    title = models.CharField(verbose_name='Наименование', max_length=255)
+    price = models.IntegerField(verbose_name='Цена', default=0)
+    description = models.TextField(verbose_name='Описание товара')
+
+    class Meta:
+        verbose_name = 'Карточки товара'
+        verbose_name_plural = 'Карточки товаров'
+
+    def __str__(self) -> str:
+        return self.title
+    
+    def get_absolute_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return ""
+    
