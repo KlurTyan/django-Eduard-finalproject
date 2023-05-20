@@ -1,13 +1,16 @@
 {% extends "main.html" %}
+{% load static %}
+
 {% block title %}
 Blog
 {% endblock title %}
 
+{% block scripts %}
+<script src="{% static 'js/card.js' %}"></script>
+{% endblock scripts %}
+
 {% block content %}
-    {% for el in posts %}
-        <div class="alert alert-info">
-            <h1><a href="{% url 'single' pk=el.id %}">{{el.title}}</a></h1>
-            <p>{{el.date_post}}</p>
-        </div>
-    {% endfor %}
+<div id="card-container">
+
+</div>
 {% endblock content %}

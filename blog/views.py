@@ -85,8 +85,7 @@ class PostViewSet(GenericViewSet, mixins.ListModelMixin):
         return super(self.__class__, self).get_permissions()
 
 def index(request):
-    news = Post.objects.all()
-    return render(request, 'index.html', {'posts' : news})
+    return render(request, 'index.html')
 
 def about(request):
     aboutPost = AboutUS.objects.last()
@@ -96,6 +95,9 @@ def post_single(request, pk):
     # Post.objects.get(pk=pk)
     p = get_object_or_404(Post.objects.all(), pk=pk)
     return render(request, 'post_single.html', {'post' : p})
+
+def login(request):
+    return render(request, 'login_form.html')
 
 def post_form(request):
     if request.method == 'POST':

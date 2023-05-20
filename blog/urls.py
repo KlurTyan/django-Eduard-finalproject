@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import index, about, post_single, post_form, TokenObtainPairView, TokenRefreshView, RegisterView, PostViewSet, UserView, CourierView, SelleView, SuperAdminView, BasicView, AssemblerView, ProductCardView
+from .views import index, about, post_single, post_form, login,TokenObtainPairView, TokenRefreshView, RegisterView, PostViewSet, UserView, CourierView, SelleView, SuperAdminView, BasicView, AssemblerView, ProductCardView
 
 
 router = DefaultRouter()
@@ -9,11 +9,12 @@ router.register('products', ProductCardView, basename='products')
 router.register('post',PostViewSet, basename='post')
 
 urlpatterns = [
-    path('', index, name='home'),
+    path('', login, name='login'),
     path('about/', about, name='about'),
     path('new/', post_form, name = 'create'),
     path('<int:pk>/', post_single, name = 'single'),
     path('api/', include(router.urls)),
+    path('home', index, name='home'),
     
     path('token/',TokenObtainPairView.as_view()),
     path('token/refresh/',TokenRefreshView.as_view()),

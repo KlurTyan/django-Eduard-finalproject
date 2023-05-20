@@ -78,3 +78,15 @@ li{
     color: rgb(97, 183, 209);
 }
 
+
+#card-container img{
+    padding-left: 5px;
+    padding-top: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+#card-container .ProductsCard{
+    width: 210px;
+    background-color: #c4c4c4;
+}
