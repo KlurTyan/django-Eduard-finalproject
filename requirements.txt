@@ -7,3 +7,8 @@ drf-spectacular-sidecar
 django-rest-swagger
 Pillow
 django-jazzmin
+django-environ
+environ
+psycopg2
+psycopg2-binary
+postgresql

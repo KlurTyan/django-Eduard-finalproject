@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:13.4-alpine
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data/
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+  core:
+    image: consulting:1.0
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    links:
+      - db:db
+    depends_on:
+      - db
